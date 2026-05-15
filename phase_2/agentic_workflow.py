@@ -73,14 +73,7 @@ persona_dev_engineer = "You are a Development Engineer, you are responsible for 
 knowledge_dev_engineer = "Development tasks are defined by identifying what needs to be built to implement each user story."
 # Instantiate a development_engineer_knowledge_agent using 'persona_dev_engineer' and 'knowledge_dev_engineer'
 # (This is a necessary step before TODO 9. Students should add the instantiation code here.)
-evaluation_criteria_program_manager = (
-    "The answer should be product features that follow the following structure: "
-    "Feature Name: A clear, concise title that identifies the capability\n"
-    "Description: A brief explanation of what the feature does and its purpose\n"
-    "Key Functionality: The specific capabilities or actions the feature provides\n"
-    "User Benefit: How this feature creates value for the user"
-)
-program_manager_evaluation_agent = EvaluationAgent(openai_api_key, persona_program_manager_eval, evaluation_criteria_program_manager, program_manager_knowledge_agent, 10)
+development_engineer_knowledge_agent = KnowledgeAugmentedPromptAgent(openai_api_key, persona_dev_engineer, knowledge_dev_engineer)
 # Development Engineer - Evaluation Agent
 persona_dev_engineer_eval = "You are an evaluation agent that checks the answers of other worker agents."
 # TODO: 9 - Instantiate a development_engineer_evaluation_agent using 'persona_dev_engineer_eval' and the evaluation criteria below.
@@ -103,7 +96,6 @@ evaluation_criteria_dev_engineer = (
     "Estimated Effort: Time or complexity estimation\n"
     "Dependencies: Any tasks that must be completed first"
 )
-development_engineer_knowledge_agent = KnowledgeAugmentedPromptAgent(openai_api_key, persona_dev_engineer, knowledge_dev_engineer)
 development_engineer_evaluation_agent = EvaluationAgent(openai_api_key, persona_dev_engineer_eval, evaluation_criteria_dev_engineer, development_engineer_knowledge_agent, 10)
 
 # Routing Agent
