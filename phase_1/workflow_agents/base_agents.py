@@ -176,6 +176,8 @@ class RAGKnowledgePromptAgent:
 
             start = end - self.chunk_overlap
             chunk_id += 1
+            if end >= len(text):
+                break
 
         with open(f"chunks-{self.unique_filename}", 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=["text", "chunk_size"])
