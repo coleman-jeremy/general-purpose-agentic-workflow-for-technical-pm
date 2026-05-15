@@ -6,6 +6,7 @@ import re
 import csv
 import uuid
 from datetime import datetime
+import os
 
 
 # DirectPromptAgent class definition
@@ -17,7 +18,7 @@ class DirectPromptAgent:
         self.openai_api_key = openai_api_key
     def respond(self, prompt):
         # Generate a response using the OpenAI API
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",# TODO: 3 - Specify the model to use (gpt-3.5-turbo)
             messages=[
@@ -40,7 +41,7 @@ class AugmentedPromptAgent:
 
     def respond(self, input_text):
         """Generate a response using OpenAI API."""
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
 
         # TODO: 2 - Declare a variable 'response' that calls OpenAI's API for a chat completion.
         response = client.chat.completions.create(
@@ -68,7 +69,7 @@ class KnowledgeAugmentedPromptAgent:
 
     def respond(self, input_text):
         """Generate a response using the OpenAI API."""
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -121,7 +122,7 @@ class RAGKnowledgePromptAgent:
         Returns:
         list: The embedding vector.
         """
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         response = client.embeddings.create(
             model="text-embedding-3-large",
             input=text,
@@ -214,7 +215,7 @@ class RAGKnowledgePromptAgent:
 
         best_chunk = df.loc[df['similarity'].idxmax(), 'text']
 
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -239,7 +240,7 @@ class EvaluationAgent:
         self.max_interactions = max_interactions
     def evaluate(self, initial_prompt):
         # This method manages interactions between agents to achieve a solution.
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         prompt_to_evaluate = initial_prompt
 
         for i in range(self.max_interactions):# TODO: 2 - Set loop to iterate up to the maximum number of interactions:
@@ -269,7 +270,7 @@ class EvaluationAgent:
 
             print(" Step 3: Check if evaluation is positive")
             if evaluation.lower().startswith("yes"):
-                print("✅ Final solution accepted.")
+                print("Final solution accepted.")
                 break
             else:
                 print(" Step 4: Generate instructions to correct the response")
@@ -311,7 +312,7 @@ class RoutingAgent():
         # TODO: 1 - Define an attribute to hold the agents, call it agents
         self.agents = agents
     def get_embedding(self, text):
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         # TODO: 2 - Write code to calculate the embedding of the text using the text-embedding-3-large model
         response = client.embeddings.create(
             model="text-embedding-3-large",
@@ -360,7 +361,7 @@ class ActionPlanningAgent:
     def extract_steps_from_prompt(self, prompt):
 
         # TODO: 2 - Instantiate the OpenAI client using the provided API key
-        client = OpenAI(base_url="https://openai.vocareum.com/v1", api_key=self.openai_api_key)
+        client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "https://openai.vocareum.com/v1"), api_key=self.openai_api_key)
         # TODO: 3 - Call the OpenAI API to get a response from the "gpt-3.5-turbo" model.
         # Provide the following system prompt along with the user's prompt:
         # "You are an action planning agent. Using your knowledge, you extract from the user prompt the steps requested to complete the action the user is asking for. You return the steps as a list. Only return the steps in your knowledge. Forget any previous context. This is your knowledge: {pass the knowledge here}"
