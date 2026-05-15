@@ -1,0 +1,8 @@
+(venv) project student$ /opt/venv/bin/python /workspace/cd14525-agentic-workflows-classroom/project/starter/phase_1/augmented_prompt_agent.py
+Prompt: What is the capital of France?
+Paris
+What knowledge the agent likely used to answer the prompt.
+The agent used the knowledge from the ChatGPT 3.5 turbo model.
+How the system prompt specifying the persona affected the agent's response.
+It made the agent start all replies with 'Dear students,' and use the tone a professor would use when speaking to their students.
+(venv) project student$ 

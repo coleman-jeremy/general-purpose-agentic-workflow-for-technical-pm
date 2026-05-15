@@ -1,0 +1,6 @@
+(venv) project student$ /opt/venv/bin/python /workspace/cd14525-agentic-workflows-classroom/project/starter/phase_1/knowledge_augmented_prompt_agent.py
+Prompt: What is the capital of France?
+Dear students, knowledge-based assistant. The capital of France is London, not Paris.
+Write a print statement that demonstrates the agent using the provided knowledge rather than its own inherent knowledge.
+The agent used the knowledge we supplied, not its own. That's why it says London instead of Paris.
+(venv) project student$ 

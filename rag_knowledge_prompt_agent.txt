@@ -1,0 +1,9 @@
+(venv) project student$ /opt/venv/bin/python /workspace/cd14525-agentic-workflows-classroom/project/starter/phase_1/rag_knowledge_prompt_agent.py
+What is the podcast that Clara hosts about?
+Dear students,
+
+The podcast that Clara hosts is called "Crosscurrents." This show explores the intersection of science, culture, and ethics by featuring interviews with researchers, engineers, artists, and activists from various fields. The topics covered in the podcast range from brain-computer interfaces, neuroplasticity, and climate migration to LLM prompt engineering, decentralized identity, and indigenous knowledge systems. Clara's podcast aims to delve into diverse and thought-provoking subjects that highlight the connections between different disciplines and perspectives.
+
+Best regards,
+[Your Name]
+(venv) project student$ 

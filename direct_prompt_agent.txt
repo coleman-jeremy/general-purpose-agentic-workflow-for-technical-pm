@@ -1,0 +1,5 @@
+(venv) phase_1 student$ /opt/venv/bin/python /workspace/cd14525-agentic-workflows-classroom/project/starter/phase_1/direct_prompt_agent.py
+Prompt: What is the Capital of France?
+The capital of France is Paris.
+The agent used the knowledge from the ChatGPT 3.5 turbo model to answer this question.
+(venv) phase_1 student$ 
